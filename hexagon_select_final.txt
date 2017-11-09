@@ -1,0 +1,18 @@
+# Hexagon select
+# 2017 Levi D. Smith
+# In Gimp: Filters > Python-Fu > Console
+# Set c to side length
+# Change Image width and height if necessary
+# ToDo: Change script to work on current image / layer
+#  
+
+import math
+c=120
+a=c * math.cos(60 * math.pi / 180)
+b=c * math.sin(60 * math.pi / 180)
+p=[a,0,a+c,0,2*a+c,b,a+c,2*b,a,2*b,0,b]
+img=gimp.Image(640,480,RGB)
+layer_one=gimp.Layer(img,"HexLayer",640,480,RGB_IMAGE,100,NORMAL_MODE)
+img.add_layer(layer_one,0)
+display=pdb.gimp_display_new(img)
+pdb.gimp_image_select_polygon(img,CHANNEL_OP_REPLACE,len(p),p)
